@@ -25,6 +25,21 @@ all my email templates :)
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 ```
 
+* **обязательный HTML**
+```
+<html xmlns="http://www.w3.org/1999/xhtml">
+```
+
+* **обязательный META тег**
+```
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+```
+
+* **Для адаптивной вёрстки нужно добавить это**
+```
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+```
+
 * **Использовать таблицы**
 ```
 <table cellpadding="0" cellspacing="0" width="100%" bgcolor="#00abdf"> 
@@ -43,24 +58,96 @@ all my email templates :)
 * **Не использовать вебшрифты, только безопасные**
 [Безопасные шрифты тут, по ссылке](https://websitesetup.org/web-safe-fonts-html-css/)
 
-
-* ** Если вдруг не нужна поддержка outlook - используйте фреймворк mjml**
-
-
 * **Не забывайте про атрибуты title у ссылок, alt у картинок**
 **Путь к картинке должен быть полный!**
 ```
 <img src="https://serwis.geberit.pl/domcfg.nsf/logo-geberit.png?OpenImageResource" alt="logo" width="600px"/>
 ```
 
- Делайте телефон и почту - ссылками
+* **Закрывать тег br**
+```
+<br />
+```
 
- Писать значения цветов полностью: #ffffff вместо #fff
+* **Делайте телефон и почту - ссылками**
+```
+<a class="copyright--link" href="www.geberit.pl" style="font-family: Arial, Helvetica, sans-serif, 'Railway'; color: #ffffff;">
+    www.geberit.pl
+</a>
+```
 
- Не использовать background-image, ибо outlook не поддерживает (9% поддержка outlook)
+* **Писать значения цветов полностью: #ffffff вместо #fff**
+**Не забывать добавлять !important**
+```
+.copyright {
+    color: #ffffff !important;
+}
+```
 
-  Важно писать стили полностью (не padding: 5px 5px, а padding-top: 5px; padding-left: 5px и так далее)
+* **Стили можно писать в style**
+**Потом использовать инлайнер стилей, большинство клиентов не поддерживает <style>**
+*Ниже приведён пример со стандартными стилями которые лучше использовать в каждом письме.*
+*Так называемые обнуляющие стили*
+```
+    <style type="text/css">
+        body {
+            width: 100% !important;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            margin: 0;
+            padding: 0;
+            line-height: 100%;
+        }
+        table {
+			border-collapse: collapse;
+			mso-table-lspace: 0pt;
+			mso-table-rspace: 0pt;
+		}
+        table td {
+			border-collapse: collapse;
+		}
+    </style>
+```
 
-Предупредить, что outlook изначально не загружает никакие фотографии, лишь по клику внутри письма
+* **Медиа можно писать в теге style, потом их инлайнить через инлайнер**
+```
+    @media (max-width: 700px) {
+      .table-600 {
+        width: 500px !important;
+      }
 
-Соблюдать порог 102кб (не считая картинок) у кода письма, ибо gmail сожмет письмо
+      .table-500-inner {
+        width: 400px !important;
+      }
+    }
+```
+
+* **Стили для изображений**
+```
+    img {
+        outline: none;
+        text-decoration: none;
+        border:none;
+        -ms-interpolation-mode: bicubic;
+        max-width: 100%!important;
+        margin: 0;
+        padding: 0;
+        display: block;
+    }
+```
+
+**Не использовать background-image, ибо outlook не поддерживает (9% поддержка outlook)**
+
+**Важно писать стили полностью (не padding: 5px 5px, а padding-top: 5px; padding-left: 5px и так далее)**
+```
+.table-info {
+    padding-top: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 50px;
+    border-radius: 10px;
+}
+```
+
+**Предупредить, что outlook изначально не загружает никакие фотографии, лишь по клику внутри письма**
+**Соблюдать порог 102кб (не считая картинок) у кода письма, ибо gmail сожмет письмо**
